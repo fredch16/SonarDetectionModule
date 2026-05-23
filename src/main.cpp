@@ -15,19 +15,17 @@ long getDistance()
 {
 	digitalWrite(trigPin, LOW);
 	delayMicroseconds(2);
-
 	digitalWrite(trigPin, HIGH);
 	delayMicroseconds(10);
 	digitalWrite(trigPin, LOW);
-	// Reduced timeout for faster sweep
+
+	// Reduced timeout for faster sweep. To detect objects further away increase that value.
 	long duration = pulseIn(echoPin, HIGH, 3000);
+
 	// No echo received
 	if (duration == 0)
-		return 9999;
+		return 10000; //large value that doesn't show on processing
 	long distance = duration * 0.034 / 2;
-	// // Clamp max range to 30 cm
-	// if (distance > 30)
-	// 	distance = 300;
 	return distance;
 }
 
@@ -49,22 +47,14 @@ void loop()
 {
 	servo.write(angle);
 
-	// Small settle delay
-	delay(5);
-
+	delay(2);
 	long distance = getDistance();
-
 	Serial.print(angle);
 	Serial.print(",");
 	Serial.println(distance);
-
-	// Smoother sweep
 	angle += direction;
-
 	// Full sweep
 	if (angle >= 180 || angle <= 0)
 		direction *= -1;
-
-	// Faster sweep speed
 	delay(8);
 }
