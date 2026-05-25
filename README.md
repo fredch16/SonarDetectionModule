@@ -5,7 +5,7 @@ A real-time ultrasonic scanning system built using an ESP32, an HC-SR04 ultrason
 This project explores how low-cost sensors can be combined with embedded control systems to generate a simple spatial representation of the surrounding environment through automated scanning and real-time visualization.
 
 <p align="center">
-  <img src="./media/demo.gif" alt="Sonar scanning demonstration" width="700"/>
+  <img src="./media/demo.GIF" alt="Sonar scanning demonstration" width="700"/>
 </p>
 
 ---
